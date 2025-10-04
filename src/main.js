@@ -1,24 +1,63 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import {
+  renderHeader,
+  renderFooter,
+  renderSearchForm,
+  renderModal,
+  renderLoadingSpinner,
+  hideModal,
+  showLoadingSpinner,
+  hideLoadingSpinner,
+} from "./partials/index.js";
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+function init() {
+  renderHeader("header-container");
+  renderFooter("footer-container");
+  renderSearchForm("search-container");
+  renderModal("modal-container");
+  renderLoadingSpinner("spinner-container");
 
-setupCounter(document.querySelector('#counter'))
+  setupEventListeners();
+  loadRecipeOfTheDay();
+}
+
+function setupEventListeners() {
+  const searchForm = document.getElementById("search-form");
+  const modal = document.getElementById("recipe-modal");
+
+  if (searchForm) {
+    searchForm.addEventListener("submit", handleSearch);
+  }
+
+  if (modal) {
+    modal.addEventListener("click", (e) => {
+      if (e.target.id === "recipe-modal") {
+        hideModal();
+      }
+    });
+  }
+}
+
+function handleSearch(e) {
+  e.preventDefault();
+  const searchInput = document.getElementById("search-input");
+  const query = searchInput?.value.trim();
+
+  if (!query) return;
+
+  showLoadingSpinner();
+
+  // TODO: I'll implement the api call for recipe search here
+  setTimeout(() => {
+    hideLoadingSpinner();
+  }, 1000);
+}
+
+function loadRecipeOfTheDay() {
+  // TODO: I'll implement the api call here
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", init);
+} else {
+  init();
+}

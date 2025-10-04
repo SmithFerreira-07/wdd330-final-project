@@ -4,10 +4,77 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>global-cuisine-app</title>
+    <title>Global Cuisine Explorer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles/style.css" />
   </head>
-  <body>
-    <div id="app"></div>
+  <body
+    class="bg-stone-100 text-stone-800 antialiased min-h-screen flex flex-col"
+  >
+    <div id="header-container"></div>
+
+    <section
+      class="relative h-96 bg-gradient-to-r from-amber-900 to-amber-700 flex items-center justify-center overflow-hidden"
+    >
+      <div class="absolute inset-0 bg-black opacity-30"></div>
+      <img
+        src="/images/hero.webp"
+        alt="Delicious cuisine"
+        class="absolute inset-0 w-full h-full object-cover mix-blend-overlay"
+      />
+      <div class="relative z-10 text-center text-white px-6">
+        <h2 class="text-5xl font-bold mb-4 font-playfair">
+          Discover World Flavors
+        </h2>
+        <p class="text-xl mb-6">
+          Explore authentic recipes from around the globe
+        </p>
+      </div>
+    </section>
+
+    <main class="container mx-auto px-6 py-8 flex-grow">
+      <div id="search-container"></div>
+
+      <div id="spinner-container"></div>
+
+      <section id="recipe-of-the-day-section" class="mb-12">
+        <h2 class="text-3xl font-bold border-b-2 border-amber-700 pb-2 mb-6">
+          Recipe of the Day
+        </h2>
+        <div id="recipe-of-the-day-container"></div>
+      </section>
+
+      <section id="search-results-section" class="mb-12">
+        <h2 class="text-3xl font-bold border-b-2 border-amber-700 pb-2 mb-6">
+          Results
+        </h2>
+        <div
+          id="search-results-grid"
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        ></div>
+      </section>
+
+      <section id="favorites-section" class="mb-12">
+        <h2 class="text-3xl font-bold border-b-2 border-amber-700 pb-2 mb-6">
+          My Favorites
+        </h2>
+        <div
+          id="favorites-grid"
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        ></div>
+      </section>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <div id="modal-container"></div>
+
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
