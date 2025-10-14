@@ -11,8 +11,10 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, "index.html"),
-        about: resolve(__dirname, "about.html"),
+        about: resolve(__dirname, "src/pages/about.html"),
         recipes: resolve(__dirname, "recipes.html"),
+        favorites: resolve(__dirname, "src/pages/favorites.html"),
+        nutrition: resolve(__dirname, "src/pages/nutrition.html"),
       },
     },
   },

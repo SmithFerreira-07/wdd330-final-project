@@ -50,20 +50,24 @@
         <div id="recipe-of-the-day-container"></div>
       </section>
 
-      <section id="search-results-section" class="mb-12">
-        <h2 class="text-3xl font-bold border-b-2 border-amber-700 pb-2 mb-6">
-          Results
-        </h2>
-        <div
-          id="search-results-grid"
-          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
-        ></div>
+      <section id="search-results-section" class="mb-12" style="display: none">
+        <div id="search-results-container"></div>
       </section>
 
-      <section id="favorites-section" class="mb-12">
-        <h2 class="text-3xl font-bold border-b-2 border-amber-700 pb-2 mb-6">
-          My Favorites
-        </h2>
+      <section id="favorites-section" class="mb-12" style="display: none">
+        <div class="flex justify-between items-center mb-6">
+          <h2
+            class="text-3xl font-bold border-b-2 border-amber-700 pb-2 flex-grow"
+          >
+            My Favorites
+          </h2>
+          <a
+            href="./src/pages/favorites.html"
+            class="text-amber-700 hover:text-amber-800 font-semibold"
+          >
+            View All →
+          </a>
+        </div>
         <div
           id="favorites-grid"
           class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"

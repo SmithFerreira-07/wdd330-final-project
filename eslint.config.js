@@ -15,6 +15,10 @@ export default [
         console: "readonly",
         setTimeout: "readonly",
         URL: "readonly",
+        fetch: "readonly",
+        alert: "readonly",
+        localStorage: "readonly",
+        confirm: "readonly",
       },
     },
     plugins: {

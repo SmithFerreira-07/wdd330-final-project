@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nutrition Info - Global Cuisine Explorer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles/style.css" />
+  </head>
+  <body
+    class="bg-stone-100 text-stone-800 antialiased min-h-screen flex flex-col"
+  >
+    <div id="header-container"></div>
+
+    <section
+      class="relative h-[50vh] md:h-[30vh] bg-center bg-cover flex items-center justify-center overflow-hidden"
+      style="
+        background-image: url(&quot;https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2053&auto=format&fit=crop&quot;);
+      "
+    >
+      <div class="absolute inset-0 bg-black/40"></div>
+      <div class="relative z-10 text-center text-white px-6">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4 font-playfair">
+          Nutrition Information
+        </h1>
+        <p class="text-lg md:text-xl">
+          Discover nutritional facts about food products worldwide
+        </p>
+      </div>
+    </section>
+
+    <main class="container mx-auto px-6 py-8 flex-grow">
+      <section class="mb-8">
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <h3 class="text-2xl font-semibold mb-4">Search Food Products</h3>
+          <form id="nutrition-search-form" class="flex gap-4">
+            <div class="flex-grow">
+              <input
+                type="text"
+                id="nutrition-search-input"
+                placeholder="Search for food products (e.g., chocolate, milk, bread)..."
+                class="w-full px-4 py-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-700"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              class="bg-green-700 text-white px-8 py-3 rounded-lg hover:bg-green-800 transition-colors duration-200 font-semibold"
+            >
+              Search
+            </button>
+          </form>
+
+          <div class="mt-6 flex flex-wrap gap-2">
+            <span class="text-sm text-stone-600">Quick searches:</span>
+            <button
+              onclick="window.quickSearch('chocolate')"
+              class="text-sm bg-stone-100 hover:bg-stone-200 px-3 py-1 rounded-full transition-colors"
+            >
+              Chocolate
+            </button>
+            <button
+              onclick="window.quickSearch('yogurt')"
+              class="text-sm bg-stone-100 hover:bg-stone-200 px-3 py-1 rounded-full transition-colors"
+            >
+              Yogurt
+            </button>
+            <button
+              onclick="window.quickSearch('cereal')"
+              class="text-sm bg-stone-100 hover:bg-stone-200 px-3 py-1 rounded-full transition-colors"
+            >
+              Cereal
+            </button>
+            <button
+              onclick="window.quickSearch('cheese')"
+              class="text-sm bg-stone-100 hover:bg-stone-200 px-3 py-1 rounded-full transition-colors"
+            >
+              Cheese
+            </button>
+            <button
+              onclick="window.quickSearch('bread')"
+              class="text-sm bg-stone-100 hover:bg-stone-200 px-3 py-1 rounded-full transition-colors"
+            >
+              Bread
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <div id="spinner-container" class="hidden">
+        <div class="flex justify-center items-center py-12">
+          <div
+            class="animate-spin rounded-full h-16 w-16 border-b-4 border-green-700"
+          ></div>
+        </div>
+      </div>
+
+      <section id="nutrition-results-section" style="display: none">
+        <div id="nutrition-results-container"></div>
+      </section>
+
+      <section class="mb-12" id="nutriscore-info">
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <h3 class="text-2xl font-semibold mb-4">Understanding Nutri-Score</h3>
+          <p class="text-stone-600 mb-4">
+            Nutri-Score is a nutrition label that converts the nutritional value
+            of products into a simple code consisting of 5 letters, each with
+            its own color.
+          </p>
+          <div class="flex flex-wrap gap-4 items-center justify-center">
+            <div class="text-center">
+              <div
+                class="w-16 h-16 bg-green-600 rounded-lg flex items-center justify-center text-white font-bold text-2xl mb-2"
+              >
+                A
+              </div>
+              <p class="text-sm text-stone-600">Best</p>
+            </div>
+            <div class="text-center">
+              <div
+                class="w-16 h-16 bg-lime-500 rounded-lg flex items-center justify-center text-white font-bold text-2xl mb-2"
+              >
+                B
+              </div>
+              <p class="text-sm text-stone-600">Good</p>
+            </div>
+            <div class="text-center">
+              <div
+                class="w-16 h-16 bg-yellow-500 rounded-lg flex items-center justify-center text-white font-bold text-2xl mb-2"
+              >
+                C
+              </div>
+              <p class="text-sm text-stone-600">Average</p>
+            </div>
+            <div class="text-center">
+              <div
+                class="w-16 h-16 bg-orange-500 rounded-lg flex items-center justify-center text-white font-bold text-2xl mb-2"
+              >
+                D
+              </div>
+              <p class="text-sm text-stone-600">Poor</p>
+            </div>
+            <div class="text-center">
+              <div
+                class="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold text-2xl mb-2"
+              >
+                E
+              </div>
+              <p class="text-sm text-stone-600">Worst</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="footer-container"></div>
+    <div id="product-modal" class="hidden"></div>
+
+    <script type="module" src="/src/js/nutrition.js"></script>
+  </body>
+</html>
